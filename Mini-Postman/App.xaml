@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Mini_Postman"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="Styles/ComboBoxStyle.xaml"/>
     </Application.Resources>
 </Application>
