@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Mini_Postman.Interfaces.IServices;
 using Mini_Postman.ViewModels;
 
 namespace Mini_Postman;
@@ -17,10 +18,11 @@ namespace Mini_Postman;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    public MainWindow(MainViewModel mainViewModel)
     {
         InitializeComponent();
 
-        DataContext = new MainViewModel();
+        DataContext = mainViewModel;
+        
     }
 }

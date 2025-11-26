@@ -20,16 +20,14 @@
                 
                 <Border Background="#3C3C3C" Margin="10,10,0,0" >
                     
-                <ComboBox 
+                <ComboBox ItemsSource="{Binding HttpMethods}"
+                          SelectedItem="{Binding SelectedMethod}"
                           MinWidth="80" 
                           VerticalAlignment="Center"
                           SelectedIndex="0"
                           Style="{StaticResource DarkComboBox}"
                 >
-                    <ComboBoxItem>Get</ComboBoxItem>
-                    <ComboBoxItem>Post</ComboBoxItem>
-                    <ComboBoxItem>Put</ComboBoxItem>
-                    <ComboBoxItem>Delete</ComboBoxItem>
+                    
                 </ComboBox>
                 </Border>
                 
@@ -65,6 +63,6 @@
                  Margin="10,15,10,10" 
                  Background="#3E3E42"     
                  Foreground="#D4D4D4"     
-                 Text="JSON Response will be here..."></TextBox>
+                 Text="{Binding ResponseText}"></TextBox>
     </Grid>
 </Window>
