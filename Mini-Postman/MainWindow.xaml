@@ -1,11 +1,37 @@
-﻿<Window x:Class="Mini_Postman.MainWindow"
+﻿<mah:MetroWindow x:Class="Mini_Postman.MainWindow"
             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            Title="Mini_Postman" Height="500" Width="700"
+            xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
+            xmlns:helpers="clr-namespace:Mini_Postman.Helpers"
+            xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+            
+            Title="PostHam" Height="500" Width="700"
+            
+            ResizeMode="CanResizeWithGrip"
+            WindowStartupLocation="CenterScreen"
+            
+            SaveWindowPosition="True" 
+            TitleCharacterCasing="Normal"
+            
+            ShowIconOnTitleBar="False"
+            Icon="app.ico"
+            
             Background="#1E1E1E">
+    
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands>
+            <Image Source="app.ico" 
+                   Width="22" 
+                   Height="22" 
+                   Margin="10,0,10,0" 
+                   RenderOptions.BitmapScalingMode="HighQuality"/>
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
     
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -18,30 +44,29 @@
                         <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 
-                <Border Background="#3C3C3C" Margin="10,10,0,0" >
-                    
                 <ComboBox ItemsSource="{Binding HttpMethods}"
                           SelectedItem="{Binding SelectedMethod}"
                           MinWidth="80" 
                           VerticalAlignment="Center"
-                          SelectedIndex="0"
-                          Style="{StaticResource DarkComboBox}"
-                >
-                    
+                          SelectedIndex="1"
+                          Margin="10,10,0,0"
+                          Style="{DynamicResource MahApps.Styles.ComboBox}"
+                          
+                          BorderThickness="0">
                 </ComboBox>
-                </Border>
                 
                 <TextBox
                     Grid.Column="1"
                     Padding="5"
                     Margin="0,10,0,0"
                     VerticalContentAlignment="Center"
-                    Background="#3C3C3C"
-                    BorderBrush="#DDDDDD"
+                    Background="#3E3E42" 
                     Foreground="#D4D4D4"
+                    BorderBrush="#3E3E42"
                     BorderThickness="0"
                     Text="{Binding Url, UpdateSourceTrigger=PropertyChanged}"
                 ></TextBox>
+                
                 
                 
                 <Button
@@ -51,18 +76,85 @@
                     BorderThickness="0"
                     MinWidth="80"           
                     Background="#007ACC"    
-                    Foreground="#D4D4D4"
+                    Foreground="White"
+                    FontWeight="SemiBold"
                     Cursor="Hand"           
                     Content="SEND">
                 </Button>
                
             </Grid> 
         
-        <TextBox Grid.Row="1" 
-                 Grid.ColumnSpan="3"      
-                 Margin="10,15,10,10" 
-                 Background="#3E3E42"     
-                 Foreground="#D4D4D4"     
-                 Text="{Binding ResponseText}"></TextBox>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0" 
+                       Text="REQUEST BODY (JSON)" 
+                       Foreground="#AAAAAA" 
+                       FontSize="11" 
+                       FontWeight="Bold"
+                       Margin="10,5"
+                       VerticalAlignment="Center"/>
+            
+            <avalon:TextEditor Grid.Row="1" 
+                     helpers:AvalonEditBehaviour.Text="{Binding RequestBody, UpdateSourceTrigger=PropertyChanged}"   
+                     Margin="10,5,10,10"
+                     FontFamily="Consolas"
+                     FontSize="13"
+                     BorderThickness="1"
+                     Background="#252526"
+                     Foreground="#D4D4D4"
+                     BorderBrush="#3E3E42"
+                     SyntaxHighlighting="JsonDark"
+                     ShowLineNumbers="True"
+                     VerticalScrollBarVisibility="Auto"
+                     WordWrap="True">
+            </avalon:TextEditor>
+        </Grid>
+        
+        <GridSplitter 
+            Grid.Row="2" 
+            Height="5" 
+            Background="Gray"
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Center"
+            Margin="10,0,10,0"></GridSplitter>
+        
+        
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0"
+                       Text="RESPONSE BODY (JSON)" 
+                       Foreground="#AAAAAA" 
+                       FontSize="11" 
+                       FontWeight="Bold"
+                       Margin="10, 5"/>
+            
+            <avalon:TextEditor Grid.Row="3" 
+                     
+                     helpers:AvalonEditBehaviour.Text="{Binding ResponseText, Mode=OneWay}"
+                     
+                     Margin="10,0,10,10" 
+                     Background="#252526"
+                     
+                     BorderThickness="1"
+                     SyntaxHighlighting="JsonDark"
+                     ShowLineNumbers="True"
+                     IsReadOnly="True"
+                     Foreground="#E1E1E1"
+                     FontFamily="Consolas"
+                     FontSize="13"
+                     WordWrap="True"
+                     VerticalScrollBarVisibility="Auto">
+            </avalon:TextEditor>
+        </Grid>    
+        
     </Grid>
-</Window>
+</mah:MetroWindow>
+

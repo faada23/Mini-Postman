@@ -18,6 +18,7 @@ public class HttpRequestService : IHttpRequestService
 
             var request = new HttpRequestMessage();
             request.RequestUri = new Uri(url);
+            request.Headers.Add("User-Agent", "MiniPostmanApp");
             request.Method = methodType;
 
             if (body is not null)
@@ -27,10 +28,12 @@ public class HttpRequestService : IHttpRequestService
             
             var response = await HttpClient.SendAsync(request).ConfigureAwait(false);
             
+            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            
             var httpResponse = new HttpResponse
             {
                 StatusCode = (int)response.StatusCode,
-                Body = (await response.Content.ReadAsStringAsync().ConfigureAwait(false)),
+                Body = content,
                 Headers = response.Headers,
                 Error = null
             };

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -51,16 +52,23 @@ public class MainViewModel : ViewModelBase
     }
     
     private async void OnSendRequest(object? obj)
-    {
+    {   
         ResponseText = $"Request for url {Url}...";
+        var stopwatch = Stopwatch.StartNew();
         
         var httpResponse = await _requestService.SendHttpRequest(_url, _selectedMethod,null);
+            
+        stopwatch.Stop();
+        var timeTaken = stopwatch.ElapsedMilliseconds;
         
         if (httpResponse.Error != null)
         {
-            ResponseText = $"CRITICAL ERROR: {httpResponse.Error}";
+            ResponseText = $"ERROR (Time: {timeTaken}ms): {httpResponse.Error}";
+            return;
         }
         
-        ResponseText = httpResponse.Body ?? "No Response";
+        ResponseText = $"Status: {httpResponse.StatusCode}\n" +
+                       $"Time: {timeTaken}ms\n\n" +
+                       $"Body:\n{httpResponse.Body}";
     }
 }

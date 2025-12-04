@@ -1,0 +1,41 @@
+﻿<SyntaxDefinition name="JsonDark" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+    
+    <Color name="Digits"     foreground="#B5CEA8" exampleText="3.14" />
+    <Color name="String"     foreground="#CE9178" exampleText="text" /> 
+    <Color name="Key"        foreground="#9CDCFE" exampleText="key" /> 
+    <Color name="ParamName"  foreground="#9CDCFE"  />
+    <Color name="Punctuation" foreground="#D4D4D4" />
+    <Color name="Bool"       foreground="#569CD6" exampleText="true" />
+    <Color name="Null"       foreground="#569CD6" exampleText="null" />
+
+    <RuleSet ignoreCase="true">
+        
+        <Span color="Key">
+            <Begin>"(?&lt;!\\)"\s*:</Begin>
+        </Span>
+
+        <Span color="String">
+            <Begin>"</Begin>
+            <End>"</End>
+            <RuleSet>
+                <Span begin="\\" end="." />
+            </RuleSet>
+        </Span>
+
+        <Rule color="Digits">
+            \b0[xX][0-9a-fA-F]+|(\b\d+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?
+        </Rule>
+
+        <Keywords color="Bool">
+            <Word>true</Word>
+            <Word>false</Word>
+        </Keywords>
+        <Keywords color="Null">
+            <Word>null</Word>
+        </Keywords>
+
+        <Rule color="Punctuation">
+            [:{},\[\]]
+        </Rule>
+    </RuleSet>
+</SyntaxDefinition>

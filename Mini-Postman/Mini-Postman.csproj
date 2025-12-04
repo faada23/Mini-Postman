@@ -10,12 +10,72 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="AvalonEdit" Version="6.3.1.120" />
       <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+      <PackageReference Include="MahApps.Metro" Version="3.0.0-rc0529" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Enums\" />
+      <Folder Include="Styles\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="connection_route_spread_virus_global_icon_133647 (1).ico" />
+      <None Remove="cloudy-lightning_icon-icons.com_61852.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="cloudy-lightning_icon-icons.com_61852 (1).ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="if-12-harry-potter-colour-harrys-lightning-scar-2730325_88172.ico" />
+      <None Remove="iconfinder-weather-weather-forecast-lightning-storm-energy-3859139_121230.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="apigee_logo_icon_168597.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="icon.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="letter.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="letter_1.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="sent.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="sent.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="paper-plane.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="app.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="postman.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="postman (1).ico" />
+      <Resource Include="app.ico" />
+      <None Remove="Resources\JsonDark.xshd" />
+      <EmbeddedResource Include="Resources\JsonDark.xshd" />
     </ItemGroup>
 
 </Project>
